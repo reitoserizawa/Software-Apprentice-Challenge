@@ -7,6 +7,8 @@ import AdCategoryTab from './AdCategoryTab';
 import AdSearch from './AdSearch';
 import AdList from './AdList';
 import AdSort from './AdSort';
+import Loader from '../Loader';
+import ErrorPage from '../ErrorPage';
 
 const Ad = () => {
     const dispatch = useDispatch();
@@ -16,8 +18,8 @@ const Ad = () => {
         dispatch(fetchAdsData());
     }, [dispatch]);
 
-    if (loading) return <div>Loading...</div>;
-    if (error) return <div> Error: {error}</div>;
+    if (loading) return <Loader />;
+    if (error) return <ErrorPage message={error} />;
 
     return (
         <div className='m-auto px-8 w-full max-w-6xl'>
