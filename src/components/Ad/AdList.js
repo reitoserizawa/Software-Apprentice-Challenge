@@ -1,7 +1,11 @@
 import React from 'react';
+import { useSelector } from 'react-redux';
+
 import AdListItem from './AdListItem';
 
 const AdList = () => {
+    const { ads } = useSelector(state => state.ads);
+
     return (
         <div className='overflow-x-auto w-full'>
             <table className='min-w-full bg-white rounded-lg shadow-sm text-sm'>
@@ -17,7 +21,9 @@ const AdList = () => {
                     </tr>
                 </thead>
                 <tbody>
-                    <AdListItem />
+                    {ads.map((adData, idx) => (
+                        <AdListItem key={`${adData?.platform}-${adData?.campaign}-${idx}`} adData={adData} />
+                    ))}
                 </tbody>
             </table>
         </div>
