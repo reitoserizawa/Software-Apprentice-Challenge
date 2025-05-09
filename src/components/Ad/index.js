@@ -6,6 +6,7 @@ import { fetchAdsData } from '../../redux/adsSlice';
 import AdCategoryTab from './AdCategoryTab';
 import AdSearch from './AdSearch';
 import AdList from './AdList';
+import AdSort from './AdSort';
 
 const Ad = () => {
     const dispatch = useDispatch();
@@ -23,6 +24,7 @@ const Ad = () => {
             <h1 className='my-4 md:my-6 lg:my-8 text-4xl font-bold text-gray-400 md:text-4xl lg:text-5xl'>Ad List</h1>
             <AdCategoryTab />
             <AdSearch />
+            <AdSort />
             <AdList />
         </div>
     );

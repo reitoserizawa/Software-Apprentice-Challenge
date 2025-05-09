@@ -5,10 +5,23 @@ import AdListItem from './AdListItem';
 
 const AdList = () => {
     const searchKeyword = useSelector(state => state.app.searchKeyword.toLowerCase());
+    const sortOption = useSelector(state => state.app.sortOption);
 
     const { ads } = useSelector(state => state.ads);
-    const filteredAds = ads.filter(ad => {
-        return ad.campaign.toLowerCase().includes(searchKeyword);
+    const filteredAds = ads.filter(ad => ad.campaign.toLowerCase().includes(searchKeyword));
+
+    const sortedAds = [...filteredAds].sort((a, b) => {
+        const aSpend = a.spend;
+        const bSpend = b.spend;
+
+        const aValid = typeof aSpend === 'number';
+        const bValid = typeof bSpend === 'number';
+
+        if (!aValid && !bValid) return 0;
+        if (!aValid) return 1;
+        if (!bValid) return -1;
+
+        return sortOption === 'asc' ? aSpend - bSpend : sortOption === 'desc' ? bSpend - aSpend : 0;
     });
 
     return (
@@ -26,7 +39,7 @@ const AdList = () => {
                     </tr>
                 </thead>
                 <tbody>
-                    {filteredAds.map((adData, idx) => (
+                    {sortedAds.map((adData, idx) => (
                         <AdListItem key={`${adData?.platform}-${adData?.campaign}-${idx}`} adData={adData} />
                     ))}
                 </tbody>
