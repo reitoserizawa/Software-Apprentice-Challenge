@@ -43,24 +43,18 @@ const normalizeAdsData = data => {
         });
     });
 
-    data.google_analytics.forEach(ga => {
-        const match = normalizedAds.find(ad => ad.campaign === ga.utm_campaign && ad.adset === ga.utm_medium && ad.creative === ga.utm_content);
-
-        if (match) {
-            match.results = ga.results;
-        } else {
-            // if no match, add ga result separately
-            normalizedAds.push({
-                platform: 'google_analytics',
-                campaign: ga.utm_campaign,
-                adset: ga.utm_medium,
-                creative: ga.utm_content,
-                spend: null,
-                impressions: null,
-                clicks: null,
-                results: ga.results
-            });
-        }
+    // GA
+    data.google_analytics.forEach(ad => {
+        normalizedAds.push({
+            platform: 'google_analytics',
+            campaign: ad.utm_campaign,
+            adset: ad.utm_medium,
+            creative: ad.utm_content,
+            spend: null,
+            impressions: null,
+            clicks: null,
+            results: ad.results
+        });
     });
 
     return normalizedAds;
