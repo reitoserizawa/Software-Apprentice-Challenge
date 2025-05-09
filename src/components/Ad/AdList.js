@@ -6,9 +6,10 @@ import AdListItem from './AdListItem';
 const AdList = () => {
     const searchKeyword = useSelector(state => state.app.searchKeyword.toLowerCase());
     const sortOption = useSelector(state => state.app.sortOption);
+    const platform = useSelector(state => state.app.platform);
 
     const { ads } = useSelector(state => state.ads);
-    const filteredAds = ads.filter(ad => ad.campaign.toLowerCase().includes(searchKeyword));
+    const filteredAds = ads.filter(ad => ad.campaign.toLowerCase().includes(searchKeyword)).filter(ad => (platform ? ad.platform === platform : 1));
 
     const sortedAds = [...filteredAds].sort((a, b) => {
         const aSpend = a.spend;

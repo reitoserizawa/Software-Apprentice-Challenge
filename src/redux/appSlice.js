@@ -3,13 +3,13 @@ import { createSlice } from '@reduxjs/toolkit';
 const appSlice = createSlice({
     name: 'app',
     initialState: {
-        platformCategory: '',
+        platform: '',
         searchKeyword: '',
         sortOption: ''
     },
     reducers: {
-        setPlatformCategory: (state, action) => {
-            state.platformCategory = action.payload;
+        setPlatform: (state, action) => {
+            state.platform = action.payload;
         },
         setSearchKeyword: (state, action) => {
             state.searchKeyword = action.payload;
@@ -20,5 +20,5 @@ const appSlice = createSlice({
     }
 });
 
-export const { setPlatformCategory, setSearchKeyword, setSortOption } = appSlice.actions;
+export const { setPlatform, setSearchKeyword, setSortOption } = appSlice.actions;
 export default appSlice.reducer;
