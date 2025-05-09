@@ -6,8 +6,8 @@ const tabOptions = [
     { label: 'All', value: '' },
     { label: 'Facebook', value: 'facebook' },
     { label: 'Twitter', value: 'twitter' },
-    { label: 'Snapchat', value: 'snapchat' },
-    { label: 'Google', value: 'google_analytics' }
+    { label: 'Snapchat', value: 'snapchat' }
+    // { label: 'Google', value: 'google_analytics' }
 ];
 
 const AdCategoryTab = () => {
