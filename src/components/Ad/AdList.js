@@ -4,7 +4,12 @@ import { useSelector } from 'react-redux';
 import AdListItem from './AdListItem';
 
 const AdList = () => {
+    const searchKeyword = useSelector(state => state.app.searchKeyword.toLowerCase());
+
     const { ads } = useSelector(state => state.ads);
+    const filteredAds = ads.filter(ad => {
+        return ad.campaign.toLowerCase().includes(searchKeyword);
+    });
 
     return (
         <div className='overflow-x-auto w-full'>
@@ -21,7 +26,7 @@ const AdList = () => {
                     </tr>
                 </thead>
                 <tbody>
-                    {ads.map((adData, idx) => (
+                    {filteredAds.map((adData, idx) => (
                         <AdListItem key={`${adData?.platform}-${adData?.campaign}-${idx}`} adData={adData} />
                     ))}
                 </tbody>
